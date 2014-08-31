@@ -1,6 +1,6 @@
-#include <GL/glut.h>
+//#include <GL/glut.h>
 #include <iostream>
-//#include <GL/freeglut.h>
+#include <GL/freeglut.h>
 
 void draw(void) {
 
@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
     glutInitDisplayMode(GLUT_RGBA|GLUT_SINGLE);
 
     //Configure Window Postion
-    glutInitWindowPosition(50, 25);
+    glutInitWindowPosition(500, 250);
 
     //Configure Window Size
     glutInitWindowSize(480,480);

@@ -1,0 +1,8 @@
+PART 1 of HOMEWORK: Write a small paragraph explaining what the
+code is doing. In case you are working with LINUX or MAC write another
+small paragraph of your setup.
+
+The main function first initializes GLUT with any parameters the compiled file might have been called with. It then initializes the display mode to a single window with RGBA color mode. The rest of the code is pretty straightforward, creating a window of a specified size at a specified position and displaying it. The display function calls draw(), which simply specifies the clear color to be black and clears the entire window buffer.
+
+SETUP:
+Ubuntu 14.04, OpenGL 3.0 Mesa 10.1.3, freeglut3. Compiling with g++.
