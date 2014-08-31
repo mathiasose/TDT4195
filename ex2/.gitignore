@@ -1,0 +1,10 @@
+bin/
+CMakeFiles/
+freeglut-*/
+glm/
+glew*/
+
+CMakeLists.txt
+
+*.out
+*.swp
