@@ -1,16 +1,7 @@
 //#include <GL/glut.h>
-#include <iostream>
+#include <stdio.h>
 #include <GL/freeglut.h>
-
-void draw(void) {
-
-    // Black background
-    glClearColor(0.0f,0.0f,0.0f,1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-    //Draw i
-    glFlush();
-
-}
+#include "visuals.h"
 
 //Main program
 
@@ -20,9 +11,8 @@ int main(int argc, char **argv) {
 
     /*Setting up  The Display
       /    -RGB color model + Alpha Channel = GLUT_RGBA
-      /    -RGB color model + Alpha Channel = GLUT_RGBA
       */
-    glutInitDisplayMode(GLUT_RGBA|GLUT_SINGLE);
+    glutInitDisplayMode(GLUT_RGBA|GLUT_DOUBLE);
 
     //Configure Window Postion
     glutInitWindowPosition(500, 250);
@@ -33,11 +23,14 @@ int main(int argc, char **argv) {
     //Create Window
     glutCreateWindow("Hello OpenGL");
 
+    Setup();
+
     //Call to the drawing function
-    glutDisplayFunc(draw);
+    glutDisplayFunc(Render);
+
+    glutReshapeFunc(Resize);
 
     // Loop require by OpenGL
-    std::cout << glGetString(GL_VERSION) << '\n';
     glutMainLoop();
     return 0;
 }

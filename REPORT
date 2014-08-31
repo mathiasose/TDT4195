@@ -6,3 +6,9 @@ The main function first initializes GLUT with any parameters the compiled file m
 
 SETUP:
 Ubuntu 14.04, OpenGL 3.0 Mesa 10.1.3, freeglut3. Compiling with g++.
+
+PART 2 of HOMEWORK:
+Research and write about three alternatives to
+GLM;
+
+PART 3 of HOMEWORK: Deliver your final code.
