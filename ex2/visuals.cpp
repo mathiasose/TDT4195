@@ -187,8 +187,8 @@ void RenderScene1()
     glLoadIdentity();
 
     glColor3f(1.0, 0.5, 0.2);							   // Set drawing colour = orange
-    glutSolidCube(20.0 );							   // Draw a built-in primitive
-
+    //glutSolidCube(20.0 );							   // Draw a built-in primitive
+    glutSolidTorus(4.0, 8.0, 10, 50);
 
 
 }
