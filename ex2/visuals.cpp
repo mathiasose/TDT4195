@@ -77,6 +77,12 @@ void KeyboardGL( unsigned char c, int x, int y )
         g_eCurrentScene = 5;
     }
         break;
+    case '6':
+    {
+        glClearColor( 0.7f, 0.7f, 0.7f, 1.0f );                      // Light-Gray background
+        g_eCurrentScene = 6;
+    }
+        break;
     case 's':
     case 'S':
     {
@@ -143,34 +149,38 @@ void DisplayGL()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // Clean up the colour of the window
     // and the depth buffer
 
-    switch ( g_eCurrentScene )
-    {
+    switch ( g_eCurrentScene ) {
     case 1:
     {
         RenderScene1();
-    }
         break;
+    }
     case 2:
     {
         RenderScene2();
-    }
         break;
+    }
     case 3:
     {
         RenderScene3();
-    }
         break;
+    }
     case 4:
     {
         RenderScene4();
-    }
         break;
+    }
     case 5:
     {
         RenderScene5();
-    }
         break;
     }
+    case 6:
+    {
+        RenderScene6();
+        break;
+    }
+}
 
 
     glutSwapBuffers();
@@ -187,8 +197,8 @@ void RenderScene1()
     glLoadIdentity();
 
     glColor3f(1.0, 0.5, 0.2);							   // Set drawing colour = orange
-    //glutSolidCube(20.0 );							   // Draw a built-in primitive
-    glutSolidTorus(4.0, 8.0, 10, 50);
+    glutSolidTorus(4.0, 8.0, 10, 50);							   // Draw a built-in primitive
+
 
 
 }
@@ -294,6 +304,32 @@ void RenderScene5()
 
 }
 
+void RenderScene6()
+{
+    // Use our shader
+    glUseProgram(programID);
+
+    // 1rst attribute buffer : vertices
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+    glVertexAttribPointer(
+                0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+                3,                  // size
+                GL_FLOAT,           // type
+                GL_FALSE,           // normalized?
+                0,                  // stride
+                (void*)0            // array buffer offset
+                );
+
+    // Draw the triangle !
+    for (int i = 3; i < 3*11; i += 3) {
+        glDrawArrays(GL_TRIANGLES, i, i + 3);
+    }
+
+    glDisableVertexAttribArray(0);
+
+}
+
 
 
 
@@ -350,8 +386,48 @@ void SetupGL() //
     //VBO
     static const GLfloat g_vertex_buffer_data[] = {
         -1.0f, -1.0f, 0.0f,
-        1.0f, -1.0f, 0.0f,
-        0.0f,  1.0f, 0.0f,
+         1.0f, -1.0f, 0.0f,
+         0.0f,  1.0f, 0.0f,
+
+        -0.7f, 0.9f, 0.0f,
+        0.3f, 0.3f, 0.0f,
+        0.1f, -0.3f, 0.0f,
+
+        0.4f, -1.0f, 0.0f,
+        -0.7f, -0.9f, 0.0f,
+        -0.8f, -0.7f, 0.0f,
+
+        -0.4f, 0.4f, 0.0f,
+        -1.0f, -0.2f, 0.0f,
+        -1.0f, -0.7f, 0.0f,
+
+        0.5f, 0.8f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.8f, 0.9f, 0.0f,
+
+        0.0f, 0.6f, 0.0f,
+        -0.5f, 1.0f, 0.0f,
+        -0.2f, 1.0f, 0.0f,
+
+        0.2f, -0.9f, 0.0f,
+        0.9f, -0.7f, 0.0f,
+        -0.1f, -0.7f, 0.0f,
+
+        0.9f, -0.6f, 0.0f,
+        -0.5f, -0.6f, 0.0f,
+        0.8f, 0.0f, 0.0f,
+
+        -0.6f, -0.4f, 0.0f,
+        -0.0f, -0.3f, 0.0f,
+        -0.5f, 0.2f, 0.0f,
+
+        1.0f, 0.9f, 0.0f,
+        0.1f, 0.7f, 0.0f,
+        0.7f, 0.1f, 0.0f,
+
+        -0.7f, 0.8f, 0.0f,
+        -0.8f, 0.1f, 0.0f,
+        -0.9f, 0.9f, 0.0f,
     };
 
     // Generate 1 buffer, put the resulting identifier in vertexbuffer
