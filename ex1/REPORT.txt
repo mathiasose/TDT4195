@@ -1,0 +1,36 @@
+# TDT4195 LAB 1
+# Mathias Ose
+
+## PART 1
+The main function first initializes GLUT with any parameters the compiled excecutable might have been called with.
+It then initializes the display mode to a single window with RGBA color mode.
+The rest of the code is pretty straightforward, creating a window of a specified size at a specified position and displaying it.
+The display function calls draw(), which simply specifies the clear color to be black and clears the entire window buffer.
+
+### SETUP
+Ubuntu 14.04, OpenGL 3.0 Mesa 10.1.3, freeglut3. Compiling with g++. Makefile attached with code.
+
+## PART 2
+### CML
+The Configurable Math Library (CML) is a open source C++ library.
+It is intended for use in "games, graphics, computational geometry, and related applications".
+Features advertised include vector, matrix and quaternion classes, generic element types in vectors or matrices, fixed-sized or dynamically resizable vectors and matrices, row- or column-vector notation, multiple coordinate systems and angle orders, projection and frustum features, and various built in functions including transformations.
+
+Primary source: http://cmldev.net/
+
+### Eigen
+Eigen is an open source C++ library, specializing in linear algebra.
+It is not specifically intended for graphics work, but can be used for it.
+Features advertised include arbitrary sized matrices, dense or sparse, different number types including integers and complex numbers, matrix decompositions and built in geometric transformations, including affine transformation matrices.
+Along with classes data structures it also boasts "complete and well-tested" algorithms that solve various problems.
+
+Primary source: eigen.tuxfamily.org/
+
+### Vector Math
+Vector Math is a C/C++ library by Sony.
+It was originally proprietary and only available to licensed Playstation developers, but later open sourced.
+This library seems to be more lacking in documentation than the others I have been looking at.
+It is a game development library, focusing on game physics and graphics and less on abstract math than the others.
+It is included as an extra plugin available in the more extensive Bullet game framework.
+
+Primary source: http://www.bulletphysics.org/Bullet/phpBB3/viewtopic.php?t=1322
