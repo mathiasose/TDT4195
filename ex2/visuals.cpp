@@ -16,7 +16,7 @@ GLuint programID;
 
 void ReshapeGL( int w, int h )
 {
-    std::cout << "ReshapGL( " << w << ", " << h << " );" << std::endl;
+    std::cout << "ReshapeGL( " << w << ", " << h << " );" << std::endl;
 
     if ( h == 0)                                        // Prevent a divide-by-zero error
     {

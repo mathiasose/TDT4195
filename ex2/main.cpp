@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
     glutInitWindowPosition((iScreenWidth - w)/2, (iScreenHeight - h)/2);
     glutInitWindowSize(w, h);
 
-    g_iGLUTWindowHandle = glutCreateWindow( "OpenGL" );
+    g_iGLUTWindowHandle = glutCreateWindow( "Lab 2" );
 
     SetupGL();
 
