@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="Opengl" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\apps\;CMake Files\..\..\..\..\apps\cmake\;CMake Files\..\..\..\..\apps\cmake\share\;CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\;CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\;CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Platform\;CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Compiler\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="Hello_world_GL">
+         <Option output="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/bin/Hello_world_GL.exe" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/bin" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/freeglut-mingw/include" />
+            <Add directory="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/glew-mingw/include" />
+            <Add directory="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/../lib/gcc/i686-w64-mingw32/4.8.2/../../../../i686-w64-mingw32/include" />
+            <Add directory="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/../lib/gcc/i686-w64-mingw32/4.8.2/include" />
+            <Add directory="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/../lib/gcc/i686-w64-mingw32/4.8.2/include-fixed" />
+            <Add directory="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/lib/gcc/../../i686-w64-mingw32/include/c++" />
+            <Add directory="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/lib/gcc/../../i686-w64-mingw32/include/c++/backward" />
+            <Add directory="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/lib/gcc/../../i686-w64-mingw32/include/c++/i686-w64-mingw32" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 Hello_world_GL" />
+            <CompileFile command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="Hello_world_GL/fast">
+         <Option output="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/bin/Hello_world_GL.exe" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/bin" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/freeglut-mingw/include" />
+            <Add directory="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/glew-mingw/include" />
+            <Add directory="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/../lib/gcc/i686-w64-mingw32/4.8.2/../../../../i686-w64-mingw32/include" />
+            <Add directory="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/../lib/gcc/i686-w64-mingw32/4.8.2/include" />
+            <Add directory="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/../lib/gcc/i686-w64-mingw32/4.8.2/include-fixed" />
+            <Add directory="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/lib/gcc/../../i686-w64-mingw32/include/c++" />
+            <Add directory="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/lib/gcc/../../i686-w64-mingw32/include/c++/backward" />
+            <Add directory="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/lib/gcc/../../i686-w64-mingw32/include/c++/i686-w64-mingw32" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 Hello_world_GL/fast" />
+            <CompileFile command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="edit_cache">
+         <Option working_dir="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 edit_cache" />
+            <CompileFile command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rebuild_cache">
+         <Option working_dir="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 rebuild_cache" />
+            <CompileFile command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="C:/apps/Qt/Qt5.3.1/Tools/mingw482_32/bin/mingw32-make.exe -f &quot;C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/main.cpp">
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/shader.cpp">
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/visuals.cpp">
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/shader.hpp">
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/visuals.h">
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeMinGWFindMake.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeDetermineSystem.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeDetermineCCompiler.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeDetermineCompiler.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeDetermineCompilerId.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeFindBinUtils.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeDetermineCXXCompiler.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeDetermineCompiler.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeDetermineCompilerId.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeFindBinUtils.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeSystemSpecificInformation.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeGenericSystem.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeFindCodeBlocks.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeCInformation.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeDetermineRCCompiler.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeRCInformation.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeTestRCCompiler.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeCommonLanguageInclude.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeTestCCompiler.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeTestCompilerCommon.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeDetermineCompilerABI.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeParseImplicitLinkInfo.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeCXXInformation.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeCommonLanguageInclude.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeTestCXXCompiler.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeTestCompilerCommon.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeDetermineCompilerABI.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeParseImplicitLinkInfo.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/FindOpenGL.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/FindPackageHandleStandardArgs.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/FindPackageMessage.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeParseArguments.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/FindPackageHandleStandardArgs.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/FindPackageMessage.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeParseArguments.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/FindPackageHandleStandardArgs.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/FindPackageMessage.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/CMakeParseArguments.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/Platform/Windows-CXX.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Platform\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/Platform/Windows.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Platform\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/Platform/WindowsPaths.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Platform\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/Platform/Windows-GNU-C.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Platform\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/Platform/Windows-GNU.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Platform\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/Platform/Windows-windres.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Platform\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/Platform/Windows-GNU-C-ABI.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Platform\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/Platform/Windows-GNU-CXX.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Platform\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/Platform/Windows-GNU.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Platform\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/Platform/Windows-GNU-CXX-ABI.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Platform\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/Compiler/GNU-C.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Compiler\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/Compiler/GNU.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Compiler\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/Compiler/GNU-CXX.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Compiler\" />
+      </Unit>
+      <Unit filename="C:/Users/student.AD-IME-NTNU-NO.014/Desktop/LAB4/../../../../apps/cmake/share/cmake-3.0/Modules/Compiler/GNU.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\apps\cmake\share\cmake-3.0\Modules\Compiler\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>
