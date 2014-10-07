@@ -47,3 +47,4 @@ void RenderScene2();
 void RenderScene3();
 void RenderScene4();
 void RenderScene5();
+void RenderScene6();

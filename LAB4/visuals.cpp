@@ -23,7 +23,7 @@
 
 // This will be used with shader
 //GLuint VertexArrayID;
-GLuint vertexbuffer, colorbuffer;
+GLuint vertexbuffer, colorbuffer, yellow_buffer, green_buffer, red_buffer, blue_buffer;
 GLuint objvertexbuffer; // for obj
 GLuint programID_1, programID_2;
 
@@ -32,7 +32,7 @@ int last_time, current_time;
 GLuint MatrixID; // Handler Matrix for moving the cam
 glm::mat4 MVP; // FInal Homogeneous Matrix
 
-glm::mat4 MVP1,MVP2,MVP3,MVP4,MVP5, MODEL_EVERYTHING, MODEL_LEG_1, MODEL_LEG_2;
+glm::mat4 MVP1,MVP2,MVP3,MVP4,MVP5,MVP6,MVP7, MODEL_EVERYTHING, MODEL_LEG_1, MODEL_LEG_2;
 glm::mat4 Projection,View,Model;
 
 // Variables for moving camera with mouse
@@ -159,7 +159,7 @@ void Idle()
         std::cout << position.x << " " << position.y <<  " " << position.z << std::endl;
 
     }
-    if (false && g_eCurrentScene ==5)
+    if (g_eCurrentScene ==5)
     {
 
         counter =counter+0.002*dt;
@@ -171,6 +171,23 @@ void Idle()
 
         MODEL_LEG_2 = glm::rotate(MODEL_LEG_2,float(-cos(counter)),glm::vec3(1,0,0));
 
+
+    }
+
+    if(g_eCurrentScene==6)
+    {
+        counter =counter+0.002*dt;
+        MODEL_EVERYTHING = glm::translate(MODEL_EVERYTHING,glm::vec3(0,0,0.0013*counter));
+
+
+        MODEL_LEG_1 = glm::rotate(MODEL_LEG_1,float(cos(counter)),glm::vec3(1,0,0));
+
+
+        MODEL_LEG_2 = glm::rotate(MODEL_LEG_2,float(-cos(counter)),glm::vec3(1,0,0));
+
+        position += glm::vec3(0,0,0.0013*counter);
+        View = glm::lookAt(position, position+direction, up);
+        glutPostRedisplay();
     }
     last_time =current_time;// update when the last timer;
 }
@@ -206,44 +223,53 @@ void KeyboardGL( unsigned char c, int x, int y )
     {
     case '1':
     {
-        glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );                         // Black background
+        glClearColor( 0.0f, 0.0f, 0.0f, 1 );                         // Black background
         g_eCurrentScene = 1;
     }
         break;
     case '2':
     {
-        glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );                         // Black background
+        glClearColor( 0.0f, 0.0f, 0.0f, 1 );                         // Black background
         g_eCurrentScene = 2;
     }
         break;
     case '3':
     {
-        glClearColor( 0.27f, 0.27f, 0.27f, 1.0f );                      // Dark-Gray background
+        glClearColor( 0.27f, 0.27f, 0.27f, 1 );                      // Dark-Gray background
         g_eCurrentScene = 3;
     }
         break;
     case '4':
     {
-        glClearColor( 0.4f, 0.4f, 0.4f, 1.0f );                      // Light-Gray background
+        glClearColor( 0.4f, 0.4f, 0.4f, 1 );                      // Light-Gray background
         g_eCurrentScene = 4;
     }
         break;
     case '5':
     {
-        glClearColor( 0.7f, 0.7f, 0.7f, 1.0f );                      // Light-Gray background
+        glClearColor( 0.7f, 0.7f, 0.7f, 1 );                      // Light-Gray background
         g_eCurrentScene = 5;
         // THIS MODEL WILL BE APPLIED TO THE WHOLE SCENE 5
-        MODEL_EVERYTHING=glm::mat4(1.0f); // Identity
-
-
+        MODEL_EVERYTHING=glm::mat4(1); // Identity
         // THIS MODEL WILL BE APPLIED TO LEG 1
-        MODEL_LEG_1=glm::mat4(1.0f);
-
-
+        MODEL_LEG_1=glm::mat4(1);
         // THIS MODEL WILL BE APPLIED TO LEG 2
-        MODEL_LEG_2=glm::mat4(1.0f);
+        MODEL_LEG_2=glm::mat4(1);
     }
         break;
+
+    case '6':
+    {
+        glClearColor( 0.7f, 0.7f, 0.7f, 1 );                      // Light-Gray background
+        g_eCurrentScene = 6;
+        // THIS MODEL WILL BE APPLIED TO THE WHOLE SCENE 5
+        MODEL_EVERYTHING=glm::mat4(1); // Identity
+        // THIS MODEL WILL BE APPLIED TO LEG 1
+        MODEL_LEG_1=glm::mat4(1);
+        // THIS MODEL WILL BE APPLIED TO LEG 2
+        MODEL_LEG_2=glm::mat4(1);
+
+    }
     case 's':
     case 'S':
     {
@@ -337,6 +363,11 @@ void DisplayGL()
         RenderScene5();
     }
         break;
+    case 6:
+    {
+        RenderScene6();
+    }
+        break;
     }
 
 
@@ -359,7 +390,7 @@ void RenderScene1()
                 glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
                 );
     // Model matrix : an identity matrix (model will be at the origin)
-    Model      = glm::mat4(1.0f);
+    Model      = glm::mat4(1);
     // Our ModelViewProjection : multiplication of our 3 matrices
     MVP        = Projection * View * Model; // Remember, matrix multiplication is the other way around
     // Use our shader
@@ -392,7 +423,7 @@ void RenderScene1()
                 );
 
     // Draw the triangles
-    glDrawArrays(GL_TRIANGLES, 0, 12*3); // 12*3 indices starting at 0 -> 12 triangles
+    glDrawArrays(GL_TRIANGLES, 0, 12*3);
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
 }
@@ -410,7 +441,7 @@ void RenderScene2()
                 glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
                 );
     // Model matrix : an identity matrix (model will be at the origin)
-    Model      = glm::mat4(1.0f);
+    Model      = glm::mat4(1);
     // Our ModelViewProjection : multiplication of our 3 matrices
     MVP        = Projection * View * Model; // Remember, matrix multiplication is the other way around
     // Use our shader
@@ -448,7 +479,7 @@ void RenderScene2()
                 );
 
     // Draw the triangles
-    glDrawArrays(GL_TRIANGLES, 0, 12*3); // 12*3 indices starting at 0 -> 12 triangles
+    glDrawArrays(GL_TRIANGLES, 0, 12*3);
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
 }
@@ -462,7 +493,7 @@ void RenderScene3()
     // Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
     Projection = glm::perspective(45.0f, 4.0f / 3.0f, 0.01f, 1000.0f);
     // Model matrix : an identity matrix (model will be at the origin)
-    Model      = glm::mat4(1.0f);
+    Model      = glm::mat4(1);
     // Our ModelViewProjection : multiplication of our 3 matrices
     MVP        = Projection * View * Model; // Remember, matrix multiplication is the other way around
     // Use our shader
@@ -495,7 +526,7 @@ void RenderScene3()
                 );
 
     // Draw the triangles
-    glDrawArrays(GL_TRIANGLES, 0, 12*3); // 12*3 indices starting at 0 -> 12 triangles
+    glDrawArrays(GL_TRIANGLES, 0, 12*3);
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
 }
@@ -508,7 +539,7 @@ void RenderScene4()
     // Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
     Projection = glm::perspective(45.0f, 4.0f / 3.0f, 0.01f, 1000.0f);
     // Model matrix : an identity matrix (model will be at the origin)
-    Model      = glm::mat4(1.0f);
+    Model      = glm::mat4(1);
     // Our ModelViewProjection : multiplication of our 3 matrices
     MVP        = Projection * View * Model; // Remember, matrix multiplication is the other way around
     // Use our shader
@@ -541,7 +572,7 @@ void RenderScene4()
                 );
 
     // Draw the triangles
-    glDrawArrays(GL_TRIANGLES, 0, 12*3); // 12*3 indices starting at 0 -> 12 triangles
+    glDrawArrays(GL_TRIANGLES, 0, 12*3);
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
 
@@ -566,12 +597,11 @@ void RenderScene5()
     glEnable(GL_DEPTH_TEST);
     // Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
     Projection = glm::perspective(45.0f, 4.0f / 3.0f, 0.01f, 1000.0f);
-
     // =================================================================================
     // ========== HIP
     // =================================================================================
     // Transform CUBE
-    Model      = glm::scale(glm::mat4(1.0f),glm::vec3(1,0.1,0.1)); //cube --> parallelepiped
+    Model      = glm::scale(glm::mat4(1),glm::vec3(1,0.1,0.1)); //cube --> parallelepiped
     // Our ModelViewProjection : multiplication of our 3 matrices
     MVP1        = Projection * View* MODEL_EVERYTHING * Model ;
     // Use our shader
@@ -582,65 +612,99 @@ void RenderScene5()
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
     glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,0,(void*)0);
     glEnableVertexAttribArray(1);
-    glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, green_buffer);
     glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,0,(void*)0);
     // Draw the trinagles
-    //glDrawArrays(GL_TRIANGLES, 0, 12*3); // 12*3 indices starting at 0 -> 12 triangles
-
+    glDrawArrays(GL_TRIANGLES, 0, 12*3);
     // =================================================================================
     // ========== HIP JOINT 1
     // =================================================================================
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, red_buffer);
+    glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,0,(void*)0);
     //transform the cube
-    Model      = glm::translate(glm::mat4(1.0f),glm::vec3(1,0,0));
+    Model      = glm::translate(glm::mat4(1),glm::vec3(1,0,0));
     Model      = glm::scale(Model,glm::vec3(0.2,0.2,0.2));
     // MVP
     MVP2        = Projection * View * MODEL_EVERYTHING * MODEL_LEG_2 * Model;
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP2[0][0]);
     // Draw the trinagles
-    //glDrawArrays(GL_TRIANGLES, 0, 12*3); // 12*3 indices starting at 0 -> 12 triangles
-
+    glDrawArrays(GL_TRIANGLES, 0, 12*3);
     // =================================================================================
     // ========== HIP JOINT 2
     // =================================================================================
     // Transform the cube
-    Model      = glm::translate(glm::mat4(1.0f),glm::vec3(-1,0,0));
+    Model      = glm::translate(glm::mat4(1),glm::vec3(-1,0,0));
     Model      = glm::scale(Model,glm::vec3(0.2,0.2,0.2));
     // MVP
     MVP3        = Projection * View * MODEL_EVERYTHING * MODEL_LEG_1 * Model;
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP3[0][0]);
     // Draw the trinagles
-    //glDrawArrays(GL_TRIANGLES, 0, 12*3); // 12*3 indices starting at 0 -> 12 triangles
-
+    glDrawArrays(GL_TRIANGLES, 0, 12*3);
     // =================================================================================
     // ========== LEG 1
     // =================================================================================
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, yellow_buffer);
+    glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,0,(void*)0);
     // transform the cube
-    Model      = glm::mat4(1.0f);
-    Model      = glm::scale(Model,glm::vec3(0.2,0.2,0.2));
+    Model      = glm::rotate(glm::mat4(1),90.0f,glm::vec3(0,0,1));
+    Model      = glm::scale(Model,glm::vec3(1,0.1,0.1));
+    Model      = glm::translate(Model,glm::vec3(-1,10,0));
+
     // MVP
     MVP4        = Projection * View * MODEL_EVERYTHING* MODEL_LEG_1* Model;
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP4[0][0]);
     // Draw the trinagles
-    glDrawArrays(GL_TRIANGLES, 12*3, 300); // 12*3 indices starting at 0 -> 12 triangles
+    glDrawArrays(GL_TRIANGLES, 12*3+1, 12*8);
+
+
+    // --
+    // FOOT 1
+    // --
+    Model = glm::translate(glm::mat4(1),glm::vec3(-1,-2,0));
+    Model = glm::scale(Model,glm::vec3(0.2,0.05,0.2));
+    MVP6 = Projection*View*MODEL_EVERYTHING*MODEL_LEG_1*Model;
+    glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP6[0][0]);
+    glDrawArrays(GL_TRIANGLES, 12*3, 12*8);
 
     // =================================================================================
     // ========== LEG 2
     // =================================================================================
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, blue_buffer);
+    glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,0,(void*)0);
     // Transform the cube
-    Model      = glm::rotate(glm::mat4(1.0f),-90.0f,glm::vec3(0,0,1));
+    Model      = glm::rotate(glm::mat4(1),-90.0f,glm::vec3(0,0,1));
     Model      = glm::scale(Model,glm::vec3(1,0.1,0.1));
     Model      = glm::translate(Model,glm::vec3(1,10,0));
+
     // MVP
     MVP5        = Projection * View *MODEL_EVERYTHING* MODEL_LEG_2* Model;
-    //glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP5[0][0]);
+    glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP5[0][0]);
     // Draw the trinagles
-    //glDrawArrays(GL_TRIANGLES, 12*3, 12*3*2); // 12*3 indices starting at 0 -> 12 triangles
+    glDrawArrays(GL_TRIANGLES, 12*3+1, 12*8);
+
+    // --
+    // FOOT 2
+    // --
+    Model = glm::translate(glm::mat4(1),glm::vec3(1,-2,0));
+    Model = glm::scale(Model,glm::vec3(0.2,0.05,0.2));
+    MVP7 = Projection*View*MODEL_EVERYTHING*MODEL_LEG_2*Model;
+    glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP7[0][0]);
+    glDrawArrays(GL_TRIANGLES, 12*3, 12*8);
+
     //END
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
 
 }
 
+
+void RenderScene6()
+{
+    RenderScene5();
+}
 
 
 
@@ -665,7 +729,7 @@ void SetupGL() //
     glEnable(GL_LIGHT0);
 
     // Black background
-    glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );   // Black background
+    glClearColor( 0.0f, 0.0f, 0.0f, 1 );   // Black background
 
     // Register GLUT callbacks
     glutDisplayFunc(DisplayGL);
@@ -680,7 +744,7 @@ void SetupGL() //
     last_time = glutGet(GLUT_ELAPSED_TIME);
 
     // Setup initial GL State
-    glClearDepth( 1.0f );
+    glClearDepth( 1 );
 
     //
     // Init GLEW
@@ -691,7 +755,7 @@ void SetupGL() //
     }
 
     // Setup initial GL State
-    glClearDepth( 1.0f );
+    glClearDepth( 1 );
 
     std::cout << "Initialise OpenGL: Success!" << std::endl;
 
@@ -706,12 +770,12 @@ void SetupGL() //
 
     //VBO -- VERTEX
     static const GLfloat g_vertex_buffer_data[] = {
-        -1,-1,-1,
+        -1,-1,-1, // triangle 1 : begin
         -1,-1, 1,
-        -1, 1, 1,
-        1, 1,-1,
+        -1, 1, 1, // triangle 1 : end
+        1, 1,-1, // triangle 2 : begin
         -1,-1,-1,
-        -1, 1,-1,
+        -1, 1,-1, // triangle 2 : end
         1,-1, 1,
         -1,-1,-1,
         1,-1,-1,
@@ -743,102 +807,366 @@ void SetupGL() //
         -1, 1, 1,
         1,-1, 1,
 
-        -4,  1, -3,
-         1,  0, -3,
-        -4, -3, -3,
+        -1, 1, 1,
+        1 , 1 ,1,
+        -1 ,-1, 1,
+        -1, 1, 1,
+        -1, -1, 1,
+        -1, -1, -1,
+        -1, -1, 1,
+        1, 1, 1,
+        -1, -1, -1,
+        -1, 1, 1,
+        1, 1, 1,
+        -1,-1,-1,
+        1, -1, -1,
+        -1 , -1, -1,
+        1 , 1, -1,
+        1, -1, -1,
+        1, 1, -1,
+        1, 1, 1,
+        1, 1, -1,
+        -1, -1, -1,
+        1, 1, 1,
+        1, -1, -1,
+        -1, -1, -1,
+        1, 1, 1
 
-        -4, -3, -3,
-         1,  0, -3,
-         1, -2, -3,
-
-        -4, -3, -3,
-         1, -2, -3,
-         1, -2,  0,
-
-         1, -2,  0,
-         1, -2, -3,
-        -4, -3,  0,
-
-         1, -2,  0,
-         1, -2, -3,
-         1,  0, -3,
-
-         1, -2,  0,
-         1,  0, -3,
-         1,  0,  0,
-
-         1,  0, -3,
-         1,  0,  0,
-        -4,  1, -3,
-
-         1,  0,  0,
-        -4,  1, -3,
-        -4,  1,  0,
-
-        -4,  1, -3,
-        -4,  1,  0,
-        -4, -3, -3,
-
-        -4,  1,  0,
-        -4, -3, -3,
-        -4, -3,  0,
-
-        -4,  1,  0,
-        -4, -3,  0,
-         1,  0,  0,
-
-        -4, -3,  0,
-         1,  0,  0,
-        -2,  0, 10,
-
-         0, -1,  0,
-        -1,  0,  0,
-         0, -1, 10,
-
-        -1,  0,  0,
-         0, -1, 10,
-        -1,  0, 10,
-
-        -1,  0,  0,
-        -2,  0,  0,
-        -1,  0, 10,
-
-        -2,  0,  0,
-        -1,  0, 10,
-        -2,  0, 10,
-
-        -2,  0,  0,
-        -2,  0, 10,
-        -3, -1, 10,
-
-        -3, -1,  0,
-        -2,  0, 10,
-        -3, -1, 10,
-
-        -3, -1,  0,
-        -3, -1, 10,
-        -2, -2, 10,
-
-        -3, -1, 10,
-        -2, -2,  0,
-        -2, -2, 10,
-
-        -2, -2, 10,
-        -2, -2,  0,
-        -1, -2,  0,
-
-        -1, -2,  0,
-        -2, -2, 10,
-        -1, -2, 10,
-
-        -1, -2,  0,
-        -1, -2, 10,
-         0, -1,  0,
-
-        -1, -2, 10,
-         0, -1,  0,
-         0, -1, 10,
     };
+
+    static const GLfloat yellow_buffer_data[] = {
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+        1, 1, 0,
+    };
+
+    static const GLfloat green_buffer_data[] = {
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0
+
+    };
+
+    static const GLfloat red_buffer_data[] = {
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0
+    };
+
+    static const GLfloat blue_buffer_data[] = {
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1
+    };
+
     static const GLfloat g_color_buffer_data[] = {
         0.583f,  0.771f,  0.014f,
         0.609f,  0.115f,  0.436f,
@@ -875,110 +1203,33 @@ void SetupGL() //
         0.393f,  0.621f,  0.362f,
         0.673f,  0.211f,  0.457f,
         0.820f,  0.883f,  0.371f,
-        0.982f,  0.099f,  0.879f,
-
-        1,0,0,
-        1,0,0,
-        1,0,0,
-        0,1,0,
-        0,1,0,
-        0,1,0,
-        0,0,1,
-        0,0,1,
-        0,0,1,
-
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
-        1,1,1,
+        0.982f,  0.099f,  0.879f
     };
 
 
 
-    // Generate 1 buffer, put the resulting identifier in vertexbuffer
     glGenBuffers(1, &vertexbuffer);
-    // The following commands will talk about our 'vertexbuffer' buffer
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-    // Give our vertices to OpenGL.
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
-    // Generate 1 buffer, put the resulting identifier in vertexbuffer
     glGenBuffers(1, &colorbuffer);
-    // The following commands will talk about our 'vertexbuffer' buffer
     glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
-    // Give our vertices to OpenGL.
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_color_buffer_data), g_color_buffer_data, GL_STATIC_DRAW);
 
+    glGenBuffers(1, &yellow_buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, yellow_buffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(yellow_buffer_data), yellow_buffer_data, GL_STATIC_DRAW);
 
+    glGenBuffers(1, &green_buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, green_buffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(green_buffer_data), green_buffer_data, GL_STATIC_DRAW);
 
+    glGenBuffers(1, &red_buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, red_buffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(red_buffer_data), red_buffer_data, GL_STATIC_DRAW);
+
+    glGenBuffers(1, &blue_buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, blue_buffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(blue_buffer_data), blue_buffer_data, GL_STATIC_DRAW);
 }
+
