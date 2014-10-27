@@ -4,7 +4,7 @@ import os
 
 import matplotlib.pyplot as pl
 import matplotlib.cm as cm
-import numpy
+from numpy import divide
 from scipy.misc.pilutil import imread, imsave
 
 OUTPUT_DIR = 'output/'
@@ -16,7 +16,7 @@ def normalize_bw(img_matrix):
 
 
 def correct_with_flatfield(img, flatfield):
-    return numpy.divide(img, flatfield)
+    return divide(img, flatfield)
 
 
 def main():
