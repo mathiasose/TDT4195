@@ -1,24 +1,29 @@
 #! /usr/bin/python
 
 from __future__ import print_function, division
-
+from copy import deepcopy
 import os
+
+from scipy.misc.pilutil import imread, imsave
 
 import matplotlib.pyplot as pl
 import matplotlib.cm as cm
-from numpy import divide
-from scipy.misc.pilutil import imread, imsave
+
 
 OUTPUT_DIR = 'output/'
 
 
 def normalize_bw(img_matrix):
-    img_matrix = map(lambda row: map(lambda val: float(val) / 255.0, row), img_matrix)
-    return img_matrix
+    return map(lambda row: map(lambda val: val / 255, row), img_matrix)
 
 
 def correct_with_flatfield(img, flatfield):
-    return divide(img, flatfield)
+    corrected = deepcopy(img)
+    for y, (a_row, b_row) in enumerate(zip(img, flatfield)):
+        for x, (a_px, b_px) in enumerate(zip(a_row, b_row)):
+            corrected[y][x] = a_px / b_px
+
+    return corrected
 
 
 def main():
