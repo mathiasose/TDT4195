@@ -1,3 +1,5 @@
+#! /usr/bin/python
+
 from __future__ import print_function, division
 
 import os
@@ -33,5 +35,5 @@ def main():
     pl.imshow(corrected_image, cmap=cm.Greys_r)
     pl.show()
 
-
-main()
+if __name__ == "__main__":
+    main()
