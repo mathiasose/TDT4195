@@ -2,5 +2,4 @@ venv/
 venv2/
 LAB1/output/*
 .idea/
-
 *.pyc

@@ -1,0 +1,26 @@
+\chapter{Exercise 1}
+
+All tasks are implemented in Python using the SciPy-stack.
+Image data is parsed into Numpy arrays and processed using a combination of built-in functions from SciPy and functions we have implemented ourselves.
+
+\section*{Task 3 - Basic Image Manipulation}
+
+\subsection*{1 - Correct an image using a flatfield image}
+
+Listing \ref{flatfield} shows the two relevant functions implemented for this task.
+For the complete implementation including reading the image files and saving/showing the end result, see the file \texttt{flatfield.py}.
+
+\begin{lstlisting}[language=Python, label=flatfield, caption=Flatfield image correction]
+def normalize_bw(img_matrix):
+    return map(lambda row: map(lambda val: val / 255, row), img_matrix)
+
+
+def correct_with_flatfield(img, flatfield):
+    corrected = deepcopy(img)
+    for y, (a_row, b_row) in enumerate(zip(img, flatfield)):
+        for x, (a_px, b_px) in enumerate(zip(a_row, b_row)):
+            corrected[y][x] = a_px / b_px
+
+    return corrected
+\end{lstlisting}
+
