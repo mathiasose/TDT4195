@@ -1,13 +1,13 @@
 from __future__ import print_function, division
-from matplotlib.image import imsave
 
 import os
+
 import numpy as np
 import matplotlib.pyplot as pl
 import matplotlib.cm as cm
+from scipy.misc.pilutil import imsave
 
 from gamma import pixel_wise_transform
-
 from gamma import minmax_2d
 
 
@@ -15,10 +15,16 @@ OUTPUT_DIR = 'output/'
 
 
 def random_matrix(w, h, n):
-    return np.asarray([[np.random.randint(n) for _ in range(w)] for _ in range(h)])
+    '''
+    :returns a w*h matrix with random integers in the range [0, n>
+    '''
+    return np.random.randint(n, size=(h, w))
 
 
 def n_count(matrix, n):
+    '''
+    :returns the number of occurences of n in the 2d matrix
+    '''
     return sum(sum(x == n for x in row) for row in matrix)
 
 
@@ -36,8 +42,11 @@ def normalize_histogram(histogram):
     return normalized
 
 
-def create_cdf(histogram):
-    return lambda i: sum(histogram[j] for j in [v for v in histogram.keys() if v <= i])
+def create_cdf(normalized_histogram):
+    '''
+    :returns a cummulative distribution function that can be called with a value parameter
+    '''
+    return lambda i: sum(normalized_histogram[j] for j in [v for v in normalized_histogram.keys() if v <= i])
 
 
 def main():
