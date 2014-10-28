@@ -1,34 +1,35 @@
 #! /usr/bin/python
+import os
+from copy import deepcopy
 
 import matplotlib.pyplot as pl
 import matplotlib.cm as cm
-import numpy.random
-from copy import deepcopy
+import numpy as np
 from scipy.misc import lena
 from scipy.misc.pilutil import imsave
+from gamma import pixel_wise_transform
+
 from flatfield import normalize_bw
 
 
-def salt_and_pepper_noise(image, density):
-    ret = deepcopy(image)
-    for y in range(len(image)):
-        for x in range(len(image[0])):
-            rnd = numpy.random.random()
-            if rnd < density:
-                ret[y][x] = numpy.random.randint(2)
-    return ret
+OUTPUT_DIR = 'output/'
+
+
+def salt_and_pepper_noise(matrix, density):
+    return pixel_wise_transform(matrix, lambda px: np.random.randint(2) if np.random.random() < density else px)
 
 
 def main():
-    img_mat = numpy.asarray(normalize_bw(lena()))
-    noisy_0_1 = salt_and_pepper_noise(img_mat, 0.1)
-    imsave('output/noisy_0_1.png', noisy_0_1)
-    noisy_0_3 = salt_and_pepper_noise(img_mat, 0.3)
-    imsave('output/noisy_0_3.png', noisy_0_3)
-    noisy_0_8 = salt_and_pepper_noise(img_mat, 0.8)
-    imsave('output/noisy_0_8.png', noisy_0_8)
-    pl.imshow(noisy_0_1, cmap=cm.Greys_r)
+    img_mat = np.asarray(normalize_bw(lena()))
+    outputs = dict()
+    for param in (0.1, 0.3, 0.8):
+        outputs[param] = salt_and_pepper_noise(img_mat, param)
+        file_name = 'noisy_{}.png'.format(str(param).replace('.', '_'))
+        imsave(os.path.join(OUTPUT_DIR, file_name), outputs[param])
+
+    pl.imshow(outputs[0.1], cmap=cm.Greys_r)
     pl.show()
+
 
 if __name__ == "__main__":
     main()

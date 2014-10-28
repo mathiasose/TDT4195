@@ -1,6 +1,7 @@
 from __future__ import print_function, division
 import os
 
+import numpy as np
 from scipy.misc.pilutil import imread, imsave
 
 
@@ -11,7 +12,7 @@ def pixel_wise_transform(matrix, fun):
     '''
     applies fun(px) to every px in the 2d matrix
     '''
-    return map(lambda row: map(lambda px: fun(px), row), matrix)
+    return np.asarray(map(lambda row: map(lambda px: fun(px), row), matrix))
 
 
 def minmax_2d(matrix):
@@ -47,4 +48,5 @@ def main():
     imsave(output_path, corrected)
 
 
-main()
+if __name__ == "__main__":
+    main()
