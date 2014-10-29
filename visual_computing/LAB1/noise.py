@@ -1,6 +1,5 @@
 #! /usr/bin/python
 import os
-from copy import deepcopy
 
 import matplotlib.pyplot as pl
 import matplotlib.cm as cm

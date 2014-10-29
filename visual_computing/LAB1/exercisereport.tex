@@ -42,7 +42,7 @@ If we did this by subtraction, i.e original\_pixel\_intensity - flat\_field\_int
 
 \subsection*{1 - Intensity Transform}
 
-%\input{../LAB1/point_processing}
+\input{../LAB1/point_processing}
 
 \section*{Task 5 - Noise}
 
@@ -69,5 +69,45 @@ def pixel_wise_transform(matrix, fun):
     \includegraphics[width=5cm]{../LAB1/output/noisy_0_1.png} \\
     \includegraphics[width=5cm]{../LAB1/output/noisy_0_3.png}
     \includegraphics[width=5cm]{../LAB1/output/noisy_0_8.png}
-    \caption{From top left to bottom right: original, density = 0.1, density = 0.3, density = 0,8}
+    \caption{Results of adding noise to Lena. From top left to bottom right: original, density = 0.1, density = 0.3, density = 0.8}
+\end{figure}
+
+There are several other types of image noise; gaussian, shot, uniform, film grain and anisotropic.
+
+\newpage
+
+\section*{Task 6 - Aliasing}
+
+See listing \ref{aliasing}. The effect observed is called aliasing. 
+
+\begin{lstlisting}[language=Python, label=aliasing, caption=Aliasing function]
+def alias(img_mat, factor):
+    ret = []
+    for y in range(len(img_mat)):
+        if y % factor == 0:
+            l = []
+            for x in range(len(img_mat[0])):
+                if x % factor == 0:
+                    l.append(img_mat[y][x])
+            ret.append(l)
+    return asarray(ret)
+\end{lstlisting}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=5cm]{../LAB1/img/bricks.png}
+    \includegraphics[width=5cm]{../LAB1/output/brick_down_2x.png} \\
+    \includegraphics[width=5cm]{../LAB1/output/brick_down_3x.png}
+    \includegraphics[width=5cm]{../LAB1/output/brick_down_4x.png}
+    \caption{Results of downsampling the image bricks.png. From top left to bottom right: original, factor = 2, factor = 3, factor = 4}
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=5cm]{../LAB1/img/lena.png}
+    \includegraphics[width=5cm]{../LAB1/output/lena_down_2x.png} \\
+    \includegraphics[width=5cm]{../LAB1/output/lena_down_3x.png}
+    \includegraphics[width=5cm]{../LAB1/output/lena_down_4x.png}
+    \caption{Results of downsampling Lena. From top left to bottom right: original, factor = 2, factor = 3, factor = 4}
 \end{figure}

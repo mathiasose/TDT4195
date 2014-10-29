@@ -1,7 +1,7 @@
 #! /usr/bin/python
 import matplotlib.pyplot as pl
 from numpy import asarray
-from numpy import random
+from scipy.misc import lena
 from scipy.misc.pilutil import imread, imsave
 
 
