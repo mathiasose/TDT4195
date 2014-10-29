@@ -24,6 +24,14 @@ def correct_with_flatfield(img, flatfield):
     return corrected
 \end{lstlisting}
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=5cm]{../LAB1/img/disturbed_potw1144a.png}
+    \includegraphics[width=5cm]{../LAB1/img/flatfieldimage.png}
+    \includegraphics[width=5cm]{../LAB1/output/disturbed_potw1144a.png}
+    \caption{From the left: original, flat-field image, corrected}
+\end{figure}
+
 \subsection*{2 - Speculation}
 
 When performing flat-field correction we want to compensate for imperfections of the detector by scaling the intensity value of a pixel by scaling with the intensity value of the same pixel in the flat-field image.
@@ -34,15 +42,15 @@ If we did this by subtraction, i.e original\_pixel\_intensity - flat\_field\_int
 
 \subsection*{1 - Intensity Transform}
 
-ADD STUFF HERE
+%\input{../LAB1/point_processing}
 
 \section*{Task 5 - Noise}
 
 \subsection*{1 - Salt \& Pepper noise}
 
-Since SciPy, and PIL specifically, doesn't provide an imnoise function, this task had to be implemented manually. \ref{salt-and-pepper}
+Since SciPy, and PIL specifically, doesn't provide an \texttt{imnoise}-function, this task had to be implemented manually. \ref{salt-and-pepper}
 
-\begin{lstlisting}[language=Python, label=salt-and-pepper, caption=Salt & pepper noise]
+\begin{lstlisting}[language=Python, label=salt-and-pepper, caption=Salt \& pepper noise]
 def salt_and_pepper_noise(matrix, density):
     return pixel_wise_transform(matrix, lambda px: np.random.randint(2) if np.random.random() < density else px)
 
