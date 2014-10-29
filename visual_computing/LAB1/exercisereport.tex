@@ -48,7 +48,7 @@ If we did this by subtraction, i.e original\_pixel\_intensity - flat\_field\_int
 
 \subsection*{1 - Salt \& Pepper noise}
 
-Since SciPy, and PIL specifically, doesn't provide an \texttt{imnoise}-function, this task had to be implemented manually. \ref{salt-and-pepper}
+Since SciPy, and PIL specifically, doesn't provide an \texttt{imnoise}-function, this task had to be implemented manually. Listing \ref{salt-and-pepper} shows the functions of interest for this task.
 
 \begin{lstlisting}[language=Python, label=salt-and-pepper, caption=Salt \& pepper noise]
 def salt_and_pepper_noise(matrix, density):
@@ -62,3 +62,12 @@ def pixel_wise_transform(matrix, fun):
     return np.asarray(map(lambda row: map(lambda px: fun(px), row), matrix))
 \end{lstlisting}
 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=5cm]{../LAB1/img/lena.png}
+    \includegraphics[width=5cm]{../LAB1/output/noisy_0_1.png} \\
+    \includegraphics[width=5cm]{../LAB1/output/noisy_0_3.png}
+    \includegraphics[width=5cm]{../LAB1/output/noisy_0_8.png}
+    \caption{From top left to bottom right: original, density = 0.1, density = 0.3, density = 0,8}
+\end{figure}
