@@ -27,9 +27,7 @@ def correct_with_flatfield(img, flatfield):
 \subsection*{2 - Speculation}
 
 When performing flat-field correction we want to compensate for imperfections of the detector by scaling the intensity value of a pixel by scaling with the intensity value of the same pixel in the flat-field image.
-If we did this by subtraction, i.e original_pixel_intensity - flat_field_intensity, we could end up with negative values.
-
-
+If we did this by subtraction, i.e original\_pixel\_intensity - flat\_field\_intensity, we could end up with negative values.
 
 
 \section*{Task 4 - Point processing}
@@ -41,3 +39,18 @@ ADD STUFF HERE
 \section*{Task 5 - Noise}
 
 \subsection*{1 - Salt \& Pepper noise}
+
+Since SciPy, and PIL specifically, doesn't provide an imnoise function, this task had to be implemented manually. \ref{salt-and-pepper}
+
+\begin{lstlisting}[language=Python, label=salt-and-pepper, caption=Salt & pepper noise]
+def salt_and_pepper_noise(matrix, density):
+    return pixel_wise_transform(matrix, lambda px: np.random.randint(2) if np.random.random() < density else px)
+
+# pixel_wise_transform implementation
+def pixel_wise_transform(matrix, fun):
+    '''
+    applies fun(px) to every px in the 2d matrix
+    '''
+    return np.asarray(map(lambda row: map(lambda px: fun(px), row), matrix))
+\end{lstlisting}
+
