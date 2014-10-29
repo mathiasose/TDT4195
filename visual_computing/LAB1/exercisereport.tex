@@ -24,3 +24,20 @@ def correct_with_flatfield(img, flatfield):
     return corrected
 \end{lstlisting}
 
+\subsection*{2 - Speculation}
+
+When performing flat-field correction we want to compensate for imperfections of the detector by scaling the intensity value of a pixel by scaling with the intensity value of the same pixel in the flat-field image.
+If we did this by subtraction, i.e original_pixel_intensity - flat_field_intensity, we could end up with negative values.
+
+
+
+
+\section*{Task 4 - Point processing}
+
+\subsection*{1 - Intensity Transform}
+
+ADD STUFF HERE
+
+\section*{Task 5 - Noise}
+
+\subsection*{1 - Salt \& Pepper noise}

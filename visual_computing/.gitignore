@@ -1,5 +1,6 @@
 venv/
 venv2/
+report/report.pdf
 LAB1/output/*
 .idea/
 *.pyc
