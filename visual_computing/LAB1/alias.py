@@ -18,13 +18,13 @@ def alias(img_mat, factor):
 
 
 def main():
-    bricks_mat = imread('./img/bricks.png')
+    bricks_mat = lena()
     downsample_2x = alias(bricks_mat, 2)
-    imsave('output/brick_down_2x.png', downsample_2x)
+    imsave('output/lena_down_2x.png', downsample_2x)
     downsample_3x = alias(bricks_mat, 3)
-    imsave('output/brick_down_3x.png', downsample_3x)
+    imsave('output/lena_down_3x.png', downsample_3x)
     downsample_4x = alias(bricks_mat, 4)
-    imsave('output/brick_down_4x.png', downsample_4x)
+    imsave('output/lena_down_4x.png', downsample_4x)
 
     pl.imshow(alias(bricks_mat, 2))
     pl.show()

@@ -41,10 +41,14 @@ def main():
     EINSTEIN = 'img/einstein_lowcontrast.png'
 
     einstein_matrix = imread(EINSTEIN)
+
+    corrected = gamma_correct(einstein_matrix, gamma=1.5)
+    output_path = os.path.join(OUTPUT_DIR, "gamma_" + os.path.split(EINSTEIN)[-1])
+    imsave(output_path, corrected)
+
     stretched = stretch_range(einstein_matrix)
     corrected = gamma_correct(stretched, gamma=1.5)
-
-    output_path = os.path.join(OUTPUT_DIR, os.path.split(EINSTEIN)[-1])
+    output_path = os.path.join(OUTPUT_DIR, "stretched_gamma_" + os.path.split(EINSTEIN)[-1])
     imsave(output_path, corrected)
 
 

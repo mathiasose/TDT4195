@@ -49,12 +49,19 @@ def create_cdf(normalized_histogram):
 
 def main():
     matrix = random_matrix(4, 4, n=8)
+
+    output_path = os.path.join(OUTPUT_DIR, 'original_matrix.png')
+    imsave(output_path, matrix)
+
     histogram = create_histogram(matrix)
     normalized = normalize_histogram(histogram)
     cdf = create_cdf(normalized)
     image = pixel_wise_transform(matrix, cdf)
 
-    output_path = os.path.join(OUTPUT_DIR, 'histogram.png')
+    print(matrix)
+    print(image)
+
+    output_path = os.path.join(OUTPUT_DIR, 'normalized_matrix.png')
     imsave(output_path, image)
     pl.imshow(image, cmap=cm.Greys_r)
     pl.show()

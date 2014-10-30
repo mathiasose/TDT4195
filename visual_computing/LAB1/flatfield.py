@@ -5,7 +5,6 @@ from copy import deepcopy
 import os
 
 from scipy.misc.pilutil import imread, imsave
-
 import matplotlib.pyplot as pl
 import matplotlib.cm as cm
 
@@ -39,6 +38,7 @@ def main():
     imsave(output_path, corrected_image)
     pl.imshow(corrected_image, cmap=cm.Greys_r)
     pl.show()
+
 
 if __name__ == "__main__":
     main()
