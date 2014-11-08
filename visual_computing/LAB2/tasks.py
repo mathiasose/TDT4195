@@ -1,13 +1,14 @@
 from __future__ import print_function, division
-from numpy import linspace
-from numpy import log
+import os
+import matplotlib.pyplot as plt
+
+from numpy import linspace, log, sqrt, gradient, meshgrid
 from numpy.fft import fft2, fftshift, ifft2
+from scipy.ndimage import gaussian_gradient_magnitude
 from LAB1.image_manipulation import normalize_intensity, salt_and_pepper_noise
 from LAB2.stuff import discrete_convolution, list_get, continuous_convolution, gaussian_noise, averaging_mask
-
-import os
-
 from scipy.misc.pilutil import imread, imsave
+
 
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), 'output/')
 CAMERAMAN = os.path.join(os.path.dirname(__file__), 'img/cameraman.png')
@@ -15,6 +16,7 @@ BRICKS = os.path.join(os.path.dirname(__file__), 'img/bricks_bw.png')
 HIGH_PASS = os.path.join(os.path.dirname(__file__), 'img/high_pass.png')
 LOW_PASS = os.path.join(os.path.dirname(__file__), 'img/low_pass.png')
 BRICKS_2 = os.path.join(os.path.dirname(__file__), 'img/bricks_bw_256.png')
+HISTOGRAM = os.path.join(os.path.dirname(__file__), 'img/histogram.png')
 
 
 def task1_1():
@@ -60,6 +62,26 @@ def task2_2():
     imsave(output_path, averaging_mask(peppered, filter_size=5))
 
 
+def task2_4():
+    img = normalize_intensity(imread(CAMERAMAN))
+    img = img[30:95, [i for i in range(80, 160)]]  # select subsection of image
+    vel_x, vel_y = gradient(f=img)
+
+    magn_img = gaussian_gradient_magnitude(img, 3)
+    output_path = os.path.join(OUTPUT_DIR, "2_4_gradien_magnitude_" + os.path.split(CAMERAMAN)[-1])
+    imsave(output_path, magn_img)
+
+    dim_x, dim_y = len(img[0]), len(img)
+    x, y = range(dim_x), range(dim_y)
+    x, y = meshgrid(x, y)
+    plt.figure()
+    imgplot = plt.imshow(img)
+    imgplot.set_cmap('gray')
+    plt.ylim(dim_y, 0)
+    plt.quiver(x, y, vel_x, vel_y, pivot='middle')
+    plt.show()
+
+
 def task3_1():
     c_img = normalize_intensity(imread(CAMERAMAN))
     fft_res = fft2(a=c_img)
@@ -85,11 +107,13 @@ def task3_2():
     apply_high_pass = img_freq_dom * high_pass
     ifft_res = ifft2(a=apply_high_pass)
     output_path = os.path.join(OUTPUT_DIR, "3_2_high_pass_" + os.path.split(BRICKS_2)[-1])
+    imsave(output_path, abs(ifft_res))
 
 
 #task1_1()
 #task1_2()
 #task2_1()
 #task2_2()
+task2_4()
 #task3_1()
-task3_2()
+#task3_2()
