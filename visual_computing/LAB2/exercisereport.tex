@@ -107,7 +107,7 @@ See listing \ref{averaging_filter} for implementation and figure \ref{avg_filter
 def transform_by_coordinate(matrix, fun):
     return np.asarray([[fun(x, y) for x, _ in enumerate(row)] for y, row in enumerate(matrix)])
 
-    
+
 def get_neighbourhood(matrix, x, y, d=1):
     xs = xrange(x - d, x + d)
     ys = xrange(y - d, y + d)
@@ -193,3 +193,94 @@ def task2_2():
     \label{median_filter_results}
 \end{figure}
 
+
+\newpage
+\subsection*{2.3 - Anti-alias Filter}
+
+See listing \ref{anti_aliasing_filter} for implementation and figure \ref{gaussian_anti_aliasing_filter_results} for results.
+
+\begin{lstlisting}[language=Python, label=anti_aliasing_filter, caption=Gaussian anti-aliasing filter]
+from scipy.ndimage.filters import gaussian_filter
+
+def alias(matrix, n):
+    """
+    Downscales the matrix by removing every row and column except every nth.
+    """
+    return np.asarray(
+        [[px for x, px in enumerate(row) if x % n == 0] for y, row in enumerate(matrix) if y % n == 0]
+    )
+
+
+def task2_3():
+    print('2.3')
+    img = normalize_intensity(imread(BRICKS))
+    a_img = alias(img, 4)
+    output_path = os.path.join(OUTPUT_DIR, "2_3_downscaled_no_filter_" + os.path.split(BRICKS)[-1])
+    imsave(output_path, a_img)
+
+    gfilter_img = gauss_filter(img, 0.8)
+    agf_img = alias(gfilter_img, 4)
+    output_path = os.path.join(OUTPUT_DIR, "2_3_gauss_8" + os.path.split(BRICKS)[-1])
+    imsave(output_path, agf_img)
+
+    gfilter_img = gauss_filter(img, 0.4)
+    agf_img = alias(gfilter_img, 8)
+    output_path = os.path.join(OUTPUT_DIR, "2_3_gauss_4" + os.path.split(BRICKS)[-1])
+    imsave(output_path, agf_img)
+\end{lstlisting}
+
+\newpage
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=5cm]{../LAB2/img/bricks_bw.png}
+    \includegraphics[width=5cm]{../LAB2/output/2_3_downscaled_no_filter_bricks_bw.png} \\
+    \includegraphics[width=5cm]{../LAB2/output/2_3_gauss_4_bricks_bw.png}
+    \includegraphics[width=5cm]{../LAB2/output/2_3_gauss_8_bricks_bw.png}
+    \caption{Top: Original image, image downsampled without anti-aliasing. \\ Bottom: Downsampled and gaussian filter with $\sigma = 0.4$ and $\sigma = 0.8$}
+    \label{gaussian_anti_aliasing_filter_results}
+\end{figure}
+
+\newpage
+\subsection*{2.4 - Derivative filters}
+
+See listing \ref{gradient_task} for implementation details. Figure \ref{gradient_magnitude_image} shows the gradient magnitude image, and figure \ref{gradient_vector_field_image} shows the original image with the gradient vector field superimposed.
+
+\begin{lstlisting}[language=Python, label=gradient_task, caption=Gradient]
+import matplotlib.pyplot as plt
+from numpy import gradient
+from scipy.ndimage import gaussian_gradient_magnitude
+
+
+def task2_4():
+    img = normalize_intensity(imread(CAMERAMAN))
+    img = img[30:95, [i for i in range(80, 160)]]  # select subsection of image
+    vel_x, vel_y = gradient(f=img)
+
+    magn_img = gaussian_gradient_magnitude(img, 3)
+    output_path = os.path.join(OUTPUT_DIR, "2_4_gradien_magnitude_" + os.path.split(CAMERAMAN)[-1])
+    imsave(output_path, magn_img)
+
+    dim_x, dim_y = len(img[0]), len(img)
+    x, y = range(dim_x), range(dim_y)
+    x, y = meshgrid(x, y)
+    plt.figure()
+    imgplot = plt.imshow(img)
+    imgplot.set_cmap('gray')
+    plt.ylim(dim_y, 0)
+    plt.quiver(x, y, vel_x, vel_y, pivot='middle')
+    plt.show()
+\end{lstlisting}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=5cm]{../LAB2/output/2_4_gradien_magnitude_cameraman.png}
+    \caption{Gradient magnitude image}
+    \label{gradient_magnitude_image}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{../LAB2/output/2_4_vector_field_cameraman.png}
+    \caption{Gradient vector field superimposed on original image}
+    \label{gradient_vector_field_image}
+\end{figure}

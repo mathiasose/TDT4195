@@ -81,12 +81,19 @@ def task2_2():
 def task2_3():
     print('2.3')
     img = normalize_intensity(imread(BRICKS))
+    a_img = alias(img, 4)
+    output_path = os.path.join(OUTPUT_DIR, "2_3_downscaled_no_filter_" + os.path.split(BRICKS)[-1])
+    imsave(output_path, a_img)
 
-    img = gauss_filter(img, 0.8)
-    img = alias(img, 4)
+    gfilter_img = gauss_filter(img, 0.8)
+    agf_img = alias(gfilter_img, 4)
+    output_path = os.path.join(OUTPUT_DIR, "2_3_gauss_8_" + os.path.split(BRICKS)[-1])
+    imsave(output_path, agf_img)
 
-    output_path = os.path.join(OUTPUT_DIR, "2_3_" + os.path.split(BRICKS)[-1])
-    imsave(output_path, img)
+    gfilter_img = gauss_filter(img, 0.4)
+    agf_img = alias(gfilter_img, 4)
+    output_path = os.path.join(OUTPUT_DIR, "2_3_gauss_4_" + os.path.split(BRICKS)[-1])
+    imsave(output_path, agf_img)
 
 
 def task2_4():
@@ -139,11 +146,11 @@ def task3_2():
     imsave(output_path, abs(ifft_res))
 
 
-task1_1()
-task1_2()
-task2_1()
-task2_2()
+#task1_1()
+#task1_2()
+#task2_1()
+#task2_2()
 task2_3()
-task2_4()
-task3_1()
-task3_2()
+#task2_4()
+#task3_1()
+#task3_2()
