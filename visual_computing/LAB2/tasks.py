@@ -10,7 +10,7 @@ from scipy.misc.pilutil import imread, imsave
 from LAB1.image_manipulation import alias
 from LAB2.stuff import gauss_filter
 from LAB1.image_manipulation import normalize_intensity, salt_and_pepper_noise
-from LAB2.stuff import discrete_convolution, list_get, continuous_convolution, gaussian_noise, averaging_mask
+from LAB2.stuff import discrete_convolution, list_get, continuous_convolution, gaussian_noise, averaging_mask, median_mask
 
 
 DIR = os.path.dirname(__file__)
@@ -49,13 +49,19 @@ def task1_2():
 def task2_1():
     print('2.1')
     img = normalize_intensity(imread(CAMERAMAN))
-    gaussian = gaussian_noise(img, mean=0, std=0.1)
-    peppered = salt_and_pepper_noise(img, density=0.25)
 
+    gaussian = gaussian_noise(img, mean=0, std=0.1)
     output_path = os.path.join(OUTPUT_DIR, "2_1_gauss_" + os.path.split(CAMERAMAN)[-1])
+    imsave(output_path, gaussian)
+
+    peppered = salt_and_pepper_noise(img, density=0.25)
+    output_path = os.path.join(OUTPUT_DIR, "2_1_pepper_" + os.path.split(CAMERAMAN)[-1])
+    imsave(output_path, peppered)
+
+    output_path = os.path.join(OUTPUT_DIR, "2_1_gauss_avg_" + os.path.split(CAMERAMAN)[-1])
     imsave(output_path, averaging_mask(gaussian, filter_size=5))
 
-    output_path = os.path.join(OUTPUT_DIR, "2_1_pepper_" + os.path.split(CAMERAMAN)[-1])
+    output_path = os.path.join(OUTPUT_DIR, "2_1_pepper_avg_" + os.path.split(CAMERAMAN)[-1])
     imsave(output_path, averaging_mask(peppered, filter_size=5))
 
 
@@ -65,11 +71,11 @@ def task2_2():
     gaussian = gaussian_noise(img, mean=0, std=0.1)
     peppered = salt_and_pepper_noise(img, density=0.25)
 
-    output_path = os.path.join(OUTPUT_DIR, "2_2_gauss_" + os.path.split(CAMERAMAN)[-1])
-    imsave(output_path, averaging_mask(gaussian, filter_size=5))
+    output_path = os.path.join(OUTPUT_DIR, "2_2_gauss_med_" + os.path.split(CAMERAMAN)[-1])
+    imsave(output_path, median_mask(gaussian, filter_size=5))
 
-    output_path = os.path.join(OUTPUT_DIR, "2_2_pepper_" + os.path.split(CAMERAMAN)[-1])
-    imsave(output_path, averaging_mask(peppered, filter_size=5))
+    output_path = os.path.join(OUTPUT_DIR, "2_2_pepper_med_" + os.path.split(CAMERAMAN)[-1])
+    imsave(output_path, median_mask(peppered, filter_size=5))
 
 
 def task2_3():
