@@ -278,9 +278,76 @@ def task2_4():
     \label{gradient_magnitude_image}
 \end{figure}
 
+\newpage
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{../LAB2/output/2_4_vector_field_cameraman.png}
     \caption{Gradient vector field superimposed on original image}
     \label{gradient_vector_field_image}
+\end{figure}
+
+\newpage
+\section*{Task 3 - Frequency Domain Filtering}
+
+\subsection*{3.1 - Fourier Transform}
+
+See listing \ref{fourier_spectrum} for implementation, figure \ref{fft_spectrum_image} for spectrum images.
+
+\begin{lstlisting}[language=Python, label=fourier_spectrum, caption=Fourier transform and spectrum image]
+from numpy.fft import fft2, fftshift
+
+
+def task3_1():
+    print('3.1')
+    c_img = normalize_intensity(imread(CAMERAMAN))
+    fft_res = fft2(a=c_img)
+    output_path = os.path.join(OUTPUT_DIR, "3_1_fft_spectrum_" + os.path.split(CAMERAMAN)[-1])
+    imsave(output_path, log(1 + abs(fftshift(fft_res))))
+
+    b_img = normalize_intensity(imread(BRICKS))
+    fft_res = fft2(a=b_img)
+    output_path = os.path.join(OUTPUT_DIR, "3_1_fft_spectrum_" + os.path.split(BRICKS)[-1])
+    imsave(output_path, log(1 + abs(fftshift(fft_res))))
+\end{lstlisting}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=5cm]{../LAB2/img/bricks_bw.png}
+    \includegraphics[width=5cm]{../LAB2/output/3_1_fft_spectrum_bricks_bw.png} \\
+    \includegraphics[width=5cm]{../LAB2/img/cameraman.png}
+    \includegraphics[width=5cm]{../LAB2/output/3_1_fft_spectrum_cameraman.png}
+    \caption{Original on the left, corresponding spectrum on the right.}
+    \label{fft_spectrum_image}
+\end{figure}
+
+\newpage
+\subsection*{3.2 - Low- and High-pass}
+
+See listing \ref{lo_hi_pass} for implementation. Figure \ref{lo_hi_pass_figure} shows the results.
+
+\begin{lstlisting}[language=Python, label=lo_hi_pass, caption=Fourier transform and spectrum image]
+def task3_2():
+    print('3.2')
+    low_pass = normalize_intensity(imread(LOW_PASS))
+    high_pass = normalize_intensity(imread(HIGH_PASS))
+
+    img_freq_dom = fft2(a=normalize_intensity(imread(BRICKS_2)))
+    apply_low_pass = img_freq_dom * low_pass
+    ifft_res = ifft2(a=apply_low_pass)
+    output_path = os.path.join(OUTPUT_DIR, "3_2_low_pass_" + os.path.split(BRICKS_2)[-1])
+    imsave(output_path, abs(ifft_res))
+
+    apply_high_pass = img_freq_dom * high_pass
+    ifft_res = ifft2(a=apply_high_pass)
+    output_path = os.path.join(OUTPUT_DIR, "3_2_high_pass_" + os.path.split(BRICKS_2)[-1])
+    imsave(output_path, abs(ifft_res))
+\end{lstlisting}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=5cm]{../LAB2/img/bricks_bw_256.png}
+    \includegraphics[width=5cm]{../LAB2/output/3_2_high_pass_bricks_bw_256.png}
+    \includegraphics[width=5cm]{../LAB2/output/3_2_low_pass_bricks_bw_256.png}
+    \caption{Original image, high-pass filter applied, low-pass filter applied.}
+    \label{lo_hi_pass_figure}
 \end{figure}
