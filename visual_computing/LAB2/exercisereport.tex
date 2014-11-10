@@ -1,0 +1,67 @@
+\chapter{Exercise 2}
+
+As with the previous exercise, these tasks were solved using Python/SciPy/Numpy/Matplotlib.
+Pillow is still used to load images.
+
+\section*{Task 1 - Filtering}
+
+\subsection*{1.1 - Discrete Convolution}
+
+\begin{lstlisting}[language=Python, label=discrete_convolution, caption=Discrete convolution - box filter]
+def list_get(li, i, pad_with=0):
+    return li[i] if 0 <= i < len(li) else pad_with
+
+
+def discrete_convolution(f, g, D):
+    return lambda n: sum((f(k) * g(n - k)) for k in D)
+
+
+def task1_1():
+    print('1.1')
+    F = [1, 1, 1, 1, 1]
+    G = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0]
+    f = lambda n: list_get(F, n)
+    g = lambda n: list_get(G, n)
+
+    r = len(F) // 2
+    D = range(-r, r)
+
+    print(map(discrete_convolution(f, g, D), xrange(len(G))))
+
+>>> task1_1()
+1.1
+[0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 1, 0, 0, 0, 0, 0]
+\end{lstlisting}
+
+Padding? Yes, please.
+
+\subsection*{1.2 - Continuous Convolution}
+
+\begin{lstlisting}[language=Python, label=continous_convolution, caption=Continous convolution]
+from scipy.integrate.quadpack import quad
+from numpy.core.numeric import Inf
+from numpy import linspace
+
+def continuous_convolution(f, g):
+    return lambda t: quad(lambda v: (f(v) * g(t - v)), -Inf, Inf)[0]
+
+
+def task1_2():
+    print('1.2')
+    f = g = lambda t: 0 if abs(t) > .5 else 1
+
+    values = linspace(-1, 1, 9)
+    convoluted = map(continuous_convolution(f, g), values)
+    rounded = map(lambda x: round(x, 1), convoluted)
+    print(zip(values, rounded))
+
+>>> task1_2()
+1.2
+[(-1.0, 0.0), (-0.75, 0.2), (-0.5, 0.5), (-0.25, 0.7), (0.0, 1.0), (0.25, 0.7), (0.5, 0.5), (0.75, 0.2), (1.0, 0.0)]
+\end{lstlisting}
+
+Which shape do you expect as a result?
+
+\section*{Task 2 - Spatial Filtering}
+
+\subsection*{Adding Noise}
