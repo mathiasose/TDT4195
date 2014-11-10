@@ -2,7 +2,7 @@ from __future__ import print_function, division
 import os
 import matplotlib.pyplot as plt
 
-from numpy import linspace, log, sqrt, gradient, meshgrid
+from numpy import linspace, log, gradient, meshgrid
 from numpy.fft import fft2, fftshift, ifft2
 from scipy.ndimage import gaussian_gradient_magnitude
 from LAB1.image_manipulation import normalize_intensity, salt_and_pepper_noise
