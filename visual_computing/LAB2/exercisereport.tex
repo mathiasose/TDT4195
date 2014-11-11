@@ -33,7 +33,10 @@ def task1_1():
 [0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 1, 0, 0, 0, 0, 0]
 \end{lstlisting}
 
-Padding? Yes, please.
+In our \texttt{discrete\_convolution()} function, we are potentially accessing F with both negative indices and indices larger than the list size.
+In Python, negative indices are allowed, but would not result in the intended behaviour, as they result in access from the back of the list. (I.e. \texttt{li[-1]} returns the last element of the list.)
+Trying to access an index larger than the list size raises an exception.
+We solved this by wrapping list access in a convenience function that pads with zeroes when needed. (\texttt{list\_get()})
 
 \newpage
 \subsection*{1.2 - Continuous Convolution}
@@ -61,7 +64,7 @@ def task1_2():
 [(-1.0, 0.0), (-0.75, 0.2), (-0.5, 0.5), (-0.25, 0.7), (0.0, 1.0), (0.25, 0.7), (0.5, 0.5), (0.75, 0.2), (1.0, 0.0)]
 \end{lstlisting}
 
-Which shape do you expect as a result?
+Convolving a box signal with itself should result in a triangle shape.
 
 \newpage
 \section*{Task 2 - Spatial Filtering}
